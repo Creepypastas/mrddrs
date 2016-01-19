@@ -252,7 +252,7 @@ main{
     }
 }
 /* forms */
-form{
+form, th{
   input, textarea, select{
     @include clearfix;
     width:100%;

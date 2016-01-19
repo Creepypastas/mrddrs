@@ -182,26 +182,26 @@ main li:before {
 }
 
 /* forms */
-form input, form textarea, form select {
+form input, form textarea, form select, th input, th textarea, th select {
   width: 100%;
   display: block;
   border: solid 1px #dde;
   padding: .5em;
 }
-form input:after, form textarea:after, form select:after {
+form input:after, form textarea:after, form select:after, th input:after, th textarea:after, th select:after {
   content: "";
   display: table;
   clear: both;
 }
-form input[type=checkbox], form input[type=radio] {
+form input[type=checkbox], form input[type=radio], th input[type=checkbox], th input[type=radio] {
   display: inline;
   width: auto;
 }
-form label, form legend {
+form label, form legend, th label, th legend {
   display: block;
   margin: 1em 0 .5em;
 }
-form button, form input[type=submit] {
+form button, form input[type=submit], th button, th input[type=submit] {
   background: turquoise;
   border: none;
   border-bottom: solid 4px #21ccbb;
