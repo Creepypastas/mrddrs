@@ -42,12 +42,12 @@
       </h2>
       <table>
         <tr>
-          <th>ID</th>
-          <th>Autor</th>
-          <th>Título</th>
-          <th>Estado</th>
+          <th>ID <input ng-model="search.ID"></th>
+          <th>Autor <input ng-model="search.post_author"></th>
+          <th>Título <input ng-model="search.post_title"></th>
+          <th>Estado <input ng-model="search.post_status"></th>
         </tr>
-        <tr ng-repeat="post in mrddrs.posts.envios">
+        <tr ng-repeat="post in mrddrs.posts.envios | filter:search">
           <td>{{post.ID}}</td>
           <td>{{post.post_author}}</td>
           <td><a ng-href="{{post.url}}">{{post.post_title}}</a></td>
