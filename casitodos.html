@@ -37,9 +37,9 @@
     </section>
 
     <section class="panel important" ng-controller="posts-CTRL as mrddrs">
-      <h2 ng-init="mrddrs.posts.loadByStatus('pendientes')">
-        Envíos pendientes
-        <i ng-click="mrddrs.posts.loadByStatus('pendientes')" class="fa fa-refresh"></i>
+      <h2 ng-init="mrddrs.posts.loadByStatus('casitodos')">
+        Portafolio de creepypastas
+        <i ng-click="mrddrs.posts.loadByStatus('casitodos')" class="fa fa-refresh"></i>
       </h2>
       <table>
         <tr>
@@ -48,7 +48,7 @@
           <th>Título <input ng-model="search.post_title"></th>
           <th>Estado <input ng-model="search.post_status"></th>
         </tr>
-        <tr ng-repeat="post in mrddrs.posts.pendientes | filter:search">
+        <tr ng-repeat="post in mrddrs.posts.casitodos | filter:search">
           <td>{{post.ID}}</td>
           <td>{{post.post_author}}</td>
           <td><a ng-href="{{post.url}}">{{post.post_title}}</a></td>

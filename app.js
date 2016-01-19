@@ -5,7 +5,8 @@ angular.module('mrddrs.creepypastas.com', ['angular-loading-bar'])
   mrddrs.posts = {
     envios:[],
     pendientes:[],
-    cementerio:[]
+    cementerio:[],
+    casitodos:[]
   };
 
   mrddrs.posts.loadByStatus = function(status){
@@ -19,6 +20,9 @@ angular.module('mrddrs.creepypastas.com', ['angular-loading-bar'])
         break;
       case 'pendientes':
         posts_url = 'https://creepypastas.com/wdgts/mrddrs.creepypastas.com/pending.json';
+        break;
+      case 'casitodos':
+        posts_url = 'https://creepypastas.com/wdgts/mrddrs.creepypastas.com/casitodos.json';
         break;
       default:
       posts_url = null;
