@@ -3,7 +3,7 @@ angular.module('mrddrs.creepypastas.com', [])
 
   var mrddrs = this;
   mrddrs.posts = {
-    nuevos:[],
+    envios:[],
     pendientes:[],
     cementerio:[]
   };
