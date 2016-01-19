@@ -1,4 +1,4 @@
-angular.module('mrddrs.creepypastas.com', [])
+angular.module('mrddrs.creepypastas.com', ['angular-loading-bar'])
 .controller('posts-CTRL', ['$http', function($http) {
 
   var mrddrs = this;
