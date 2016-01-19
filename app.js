@@ -19,6 +19,10 @@ angular.module('mrddrs.creepypastas.com', [])
       mrddrs.posts.nuevos = res.data;
     });
 
+    $http.get('https://creepypastas.com/wdgts/mrddrs.creepypastas.com/pending.json')
+    .then(function(res){
+      mrddrs.posts.pendientes = res.data;
+    });
   };
 
   mrddrs.posts.get();

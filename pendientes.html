@@ -34,7 +34,7 @@
     </section>
 
     <section class="panel important" ng-controller="posts-CTRL as mrddrs">
-      <h2>Nuevos envíos</h2>
+      <h2>Envíos pendientes</h2>
       <table>
         <tr>
           <th>ID</th>
@@ -42,7 +42,7 @@
           <th>Título</th>
           <th>Estado</th>
         </tr>
-        <tr ng-repeat="post in mrddrs.posts.nuevos">
+        <tr ng-repeat="post in mrddrs.posts.pendientes">
           <th>{{post.ID}}</th>
           <th>{{post.post_author}}</th>
           <th><a ng-href="{{post.url}}">{{post.post_title}}</a></th>
