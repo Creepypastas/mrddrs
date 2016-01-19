@@ -1,5 +1,5 @@
 angular.module('mrddrs.creepypastas.com', [])
-.controller('posts-nuevos-CTRL', ['$http', function($http) {
+.controller('posts-CTRL', ['$http', function($http) {
 
   var mrddrs = this;
   mrddrs.posts = {};
