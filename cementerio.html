@@ -33,21 +33,25 @@
         <li>La barra lateral permite <b>visualizar</b> las listas de posts.</li>
       </ul>
     </section>
-    <section class="panel">
-      <h2>Entradas:</h2>
-      <ul>
-        <li><b>2458 </b> envíos pendientes.</li>
-        <li><b>36 </b> nuevos envíos.</li>
-        <li><b>536 </b> publicaciones en portada.</li>
-      </ul>
+
+    <section class="panel important" ng-controller="posts-CTRL as mrddrs">
+      <h2 ng-init="mrddrs.posts.getCementerio()">Cementerio de envíos</h2>
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>Autor</th>
+          <th>Título</th>
+          <th>Estado</th>
+        </tr>
+        <tr ng-repeat="post in mrddrs.posts.cementerio">
+          <th>{{post.ID}}</th>
+          <th>{{post.post_author}}</th>
+          <th><a ng-href="{{post.url}}">{{post.post_title}}</a></th>
+          <th>{{post.post_status}}</th>
+        </tr>
+      </table>
     </section>
-    <section class="panel">
-      <h2>Comentarios</h2>
-      <ul>
-        <li><b>50000</b> Comentarios publicados.</li>
-        <li><b>18</b> Comentarios en espera.</li>
-      </ul>
-    </section>
+
   </main>
   <footer role="contentinfo">Creepypastas.com está hecho con Wordpress, BuddyPress y <i>mucho amor</i></footer>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.1/angular.min.js"></script>

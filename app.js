@@ -25,5 +25,12 @@ angular.module('mrddrs.creepypastas.com', [])
     });
   };
 
+  mrddrs.posts.getCementerio = function(){
+    $http.get('https://creepypastas.com/wdgts/mrddrs.creepypastas.com/tumba.json')
+    .then(function(res){
+      mrddrs.posts.cementerio = res.data;
+    });
+  };
+
   mrddrs.posts.get();
 }]);
