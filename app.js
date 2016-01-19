@@ -2,35 +2,34 @@ angular.module('mrddrs.creepypastas.com', [])
 .controller('posts-CTRL', ['$http', function($http) {
 
   var mrddrs = this;
-  mrddrs.posts = {};
-  mrddrs.posts.get = function(){
-    mrddrs.posts.nuevos = [
-      {
-        ID:99231,
-        post_title:'Nakhiri te persigue.',
-        post_author:'',
-        url:'https://creepypastas.com/nakhiri-te-persigue.html',
-        post_status:'nuevo'
-      }
-    ];
+  mrddrs.posts = {
+    nuevos:[],
+    pendientes:[],
+    cementerio:[]
+  };
 
-    $http.get('https://creepypastas.com/wdgts/mrddrs.creepypastas.com/nuevo.json')
-    .then(function(res){
-      mrddrs.posts.nuevos = res.data;
-    });
+  mrddrs.posts.loadByStatus = function(status){
+    console.log('loadByStatus::' + status);
+    switch (status) {
+      case 'cementerio':
+        posts_url = 'https://creepypastas.com/wdgts/mrddrs.creepypastas.com/tumba.json';
+        break;
+      case 'envios':
+        posts_url = 'https://creepypastas.com/wdgts/mrddrs.creepypastas.com/nuevo.json';
+        break;
+      case 'pendientes':
+        posts_url = 'https://creepypastas.com/wdgts/mrddrs.creepypastas.com/pending.json';
+        break;
+      default:
+      posts_url = null;
+    }
 
-    $http.get('https://creepypastas.com/wdgts/mrddrs.creepypastas.com/pending.json')
+    if(posts_url === null)
+      return;
+    $http.get(posts_url)
     .then(function(res){
-      mrddrs.posts.pendientes = res.data;
+      mrddrs.posts[status] = res.data;
     });
   };
 
-  mrddrs.posts.getCementerio = function(){
-    $http.get('https://creepypastas.com/wdgts/mrddrs.creepypastas.com/tumba.json')
-    .then(function(res){
-      mrddrs.posts.cementerio = res.data;
-    });
-  };
-
-  mrddrs.posts.get();
 }]);
