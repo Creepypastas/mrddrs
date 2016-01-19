@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html class="dashboard">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1">
+  <title>Panel de administración</title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,400italic'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css'>
+</head>
+<body>
+  <header role="banner">
+    <h1>Panel de administración</h1>
+    <ul class="utilities">
+      <li class="users"><a href="#">Cuenta</a></li>
+      <li class="logout warn"><a href="">Salir</a></li>
+    </ul>
+  </header>
+  <nav role='navigation'>
+    <ul class="main">
+      <li class="dashboard"><a href="index.html">Panel</a></li>
+      <li class="edit"><a href="envios.html">Nuevos envíos</a></li>
+    </ul>
+  </nav>
+  <main role="main" ng-app="mrddrs.creepypastas.com" ng-cloak="">
+    <section class="panel important">
+      <h2>Bienvenido al panel de administración </h2>
+      <ul>
+        <li>La barra lateral permite <b>visualizar</b> las listas de posts.</li>
+      </ul>
+    </section>
+
+    <section class="panel important" ng-controller="posts-nuevos-CTRL as mrddrs">
+      <h2>Nuevos envíos</h2>
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>Autor</th>
+          <th>Título</th>
+          <th>Estado</th>
+        </tr>
+        <tr ng-repeat="post in mrddrs.posts.nuevos">
+          <th>{{post.ID}}</th>
+          <th>{{post.post_author}}</th>
+          <th><a ng-href="{{post.url}}">{{post.post_title}}</a></th>
+          <th>{{post.post_status}}</th>
+        </tr>
+      </table>
+    </section>
+
+  </main>
+  <footer role="contentinfo">Creepypastas.com está hecho con Wordpress, BuddyPress y <i>mucho amor</i></footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.1/angular.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
