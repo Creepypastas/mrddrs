@@ -9,6 +9,8 @@ angular.module('mrddrs.creepypastas.com', ['angular-loading-bar'])
     casitodos:[]
   };
 
+  mrddrs.loading = {};
+
   mrddrs.posts.loadByStatus = function(status){
     console.log('loadByStatus::' + status);
     switch (status) {
@@ -30,10 +32,18 @@ angular.module('mrddrs.creepypastas.com', ['angular-loading-bar'])
 
     if(posts_url === null)
       return;
+    mrddrs.loading[status] = true;
     $http.get(posts_url)
     .then(function(res){
       mrddrs.posts[status] = res.data;
+      mrddrs.loading[status] = false;
     });
+  };
+
+  mrddrs.refreshClass = function(status){
+    if(mrddrs.loading[status] === true)
+      return 'fa fa-refresh fa-spin';
+    return 'fa fa-refresh';
   };
 
 }]);
