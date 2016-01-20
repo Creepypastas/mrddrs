@@ -45,7 +45,7 @@
         <tr>
           <th>
             <span ng-click="mrddrs.order('ID')">ID</span>
-            <span class="sortorder" ng-show="mrddrs.predicate === 'ID'" ng-class="{reverse:reverse}"></span>
+            <span class="sortorder" ng-show="mrddrs.predicate === 'ID'" ng-class="{reverse:mrddrs.reverse}"></span>
             <input ng-model="search.ID">
           </th>
           <th><span ng-click="mrddrs.order('post_title')">Título</span> <input ng-model="search.post_title"></th>
