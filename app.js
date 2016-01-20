@@ -50,4 +50,12 @@ angular.module('mrddrs.creepypastas.com', ['angular-loading-bar'])
     });
   };
 
+  mrddrs.predicate = 'ID';
+  mrddrs.reverse = true;
+  mrddrs.order = function(predicate) {
+    console.log('order:' + predicate);
+    mrddrs.reverse = (mrddrs.predicate === predicate) ? !mrddrs.reverse : false;
+    mrddrs.predicate = predicate;
+  };
+
 }]);
