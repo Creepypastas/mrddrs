@@ -8,6 +8,7 @@ angular.module('mrddrs.creepypastas.com', ['angular-loading-bar'])
     cementerio:[],
     casitodos:[]
   };
+  mrddrs.updates = {};
 
   mrddrs.loading = {};
 
@@ -37,6 +38,7 @@ angular.module('mrddrs.creepypastas.com', ['angular-loading-bar'])
     .then(function(res){
       mrddrs.posts[status] = res.data;
       mrddrs.loading[status] = false;
+      mrddrs.updates[status] = Date(res.headers()['last-modified']);
     });
   };
 
