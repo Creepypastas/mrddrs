@@ -50,7 +50,9 @@
         <tr ng-repeat="post in mrddrs.posts.casitodos | filter:search">
           <td>{{post.ID}}</td>
           <td><a ng-href="{{post.url}}">{{post.post_title}}</a></td>
-          <td>{{post.post_status}}</td>
+          <td>
+            <span ng-repeat="status in mrddrs.statusList" ng-class="mrddrs.statusClass(post_status,status.name)">{{status.name}}</span>
+          </td>
         </tr>
       </table>
     </section>

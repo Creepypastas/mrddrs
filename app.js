@@ -53,4 +53,10 @@ angular.module('mrddrs.creepypastas.com', ['angular-loading-bar'])
     return 'fa fa-refresh';
   };
 
+  mrddrs.statusClass = function(post_status, list_status){
+    if(post_status == list_status)
+      return "it-is";
+    return "it-is-not";
+  };
+
 }]);
