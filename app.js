@@ -9,7 +9,6 @@ angular.module('mrddrs.creepypastas.com', ['angular-loading-bar'])
     casitodos:[]
   };
   mrddrs.updates = {};
-
   mrddrs.loading = {};
 
   mrddrs.posts.loadByStatus = function(status){
