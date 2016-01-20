@@ -39,7 +39,7 @@
     <section class="panel important" ng-controller="posts-CTRL as mrddrs">
       <h2 ng-init="mrddrs.posts.loadByStatus('casitodos')">
         Portafolio de creepypastas
-        <i ng-click="mrddrs.posts.loadByStatus('casitodos')" ng-class="mrddrs.refreshClass('casitodos')"></i>
+        <i ng-click="mrddrs.posts.loadByStatus('casitodos')" class="fa fa-refresh" ng-class="{'fa-spin' : mrddrs.loading.casitodos.isLoading, 'mrddrs-icon-error' : mrddrs.loading.casitodos.error}"></i>
       </h2>
       <table>
         <tr>
