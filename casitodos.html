@@ -51,7 +51,7 @@
           <td>{{post.ID}}</td>
           <td><a ng-href="{{post.url}}">{{post.post_title}}</a></td>
           <td>
-            <span ng-repeat="status in mrddrs.statusList" ng-class="mrddrs.statusClass(post_status,status.name)">{{status.name}}</span>
+            <span ng-repeat="status in mrddrs.statusList">{{status.name}}</span>
           </td>
         </tr>
       </table>

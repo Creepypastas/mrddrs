@@ -54,8 +54,9 @@ angular.module('mrddrs.creepypastas.com', ['angular-loading-bar'])
   };
 
   mrddrs.statusClass = function(post_status, list_status){
-    if(post_status == list_status)
+    if( 0 === post_status.localeCompare(list_status) ){
       return "it-is";
+    }
     return "it-is-not";
   };
 
