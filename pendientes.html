@@ -39,7 +39,7 @@
     <section class="panel important" ng-controller="posts-CTRL as mrddrs">
       <h2 ng-init="mrddrs.posts.loadByStatus('pendientes')">
         Envíos pendientes
-        <i ng-click="mrddrs.posts.loadByStatus('pendientes')" class="fa fa-refresh"></i>
+        <i ng-click="mrddrs.posts.loadByStatus('pendientes')" ng-class="mrddrs.refreshClass('pendientes')"></i>
       </h2>
       <table>
         <tr>

@@ -39,7 +39,7 @@
     <section class="panel important" ng-controller="posts-CTRL as mrddrs">
       <h2 ng-init="mrddrs.posts.loadByStatus('cementerio')">
         Cementerio de envíos
-        <i ng-click="mrddrs.posts.loadByStatus('cementerio')" class="fa fa-refresh"></i>
+        <i ng-click="mrddrs.posts.loadByStatus('cementerio')" ng-class="mrddrs.refreshClass('cementerio')"></i>
       </h2>
       <table>
         <tr>
