@@ -10,6 +10,12 @@ angular.module('mrddrs.creepypastas.com', ['angular-loading-bar'])
   };
   mrddrs.updates = {};
   mrddrs.loading = {};
+  mrddrs.statusList = [
+    {name:'publish'},
+    {name:'nuevo'},
+    {name:'pending'},
+    {name:'tumba'}
+  ];
 
   mrddrs.posts.loadByStatus = function(status){
     console.log('loadByStatus::' + status);
