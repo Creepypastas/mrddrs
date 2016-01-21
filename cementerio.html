@@ -57,7 +57,7 @@
             <i ng-show="mrddrs.predicate === 'post_status'" class="fa" ng-class="{'fa-caret-down':mrddrs.reverse, 'fa-caret-up':!mrddrs.reverse}"></i>
             <input ng-model="search.post_status"></th>
         </tr>
-        <tr ng-repeat="post in mrddrs.posts.cementerio | filter:search">
+        <tr ng-repeat="post in mrddrs.posts.cementerio | filter:search | orderBy:mrddrs.predicate:mrddrs.reverse">
           <td>{{post.ID}}</td>
           <td><a ng-href="{{post.url}}">{{post.post_title}}</a></td>
           <td>{{post.post_status}}</td>
