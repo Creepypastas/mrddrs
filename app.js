@@ -1,5 +1,5 @@
-angular.module('mrddrs.creepypastas.com', ['angular-loading-bar'])
-.controller('posts-CTRL', ['$http', function($http) {
+angular.module('mrddrs.creepypastas.com', ['angular-loading-bar','ui.bootstrap','dialogs.main'])
+.controller('posts-CTRL', ['$http','dialogs',function($http,dialogs) {
 
   var mrddrs = this;
   mrddrs.posts = {
@@ -71,4 +71,31 @@ angular.module('mrddrs.creepypastas.com', ['angular-loading-bar'])
     return "it-is-not";
   };
 
+  mrddrs.launch = function(which, data){
+    switch(which){
+      case 'edit-single-post':
+        var dlg = dialogs.create('/dialogs/edit-single-post-status','editSinglePostStatusCtrl',data,{size:'lg',keyboard:true,backdrop:false});
+        dlg.result.then(function(current_post){
+          mrddrs.current_post = current_post;
+        });
+        break;
+    }
+  };
+
+}])
+
+.controller('editSinglePostStatusCtrl', ['$scope','$uibModalInstance','data',function($scope,$uibModalInstance,data){
+  $scope.current_post = data;
+  $scope.done = function(){
+    $uibModalInstance.close($scope.current_post);
+  }; // end done
+
+  $scope.hitEnter = function(evt){
+    if(angular.equals(evt.keyCode,13))
+      $scope.done();
+  };
+}])
+
+.run(['$templateCache',function($templateCache){
+  $templateCache.put('/dialogs/edit-single-post-status','<div class="modal-header"><h4 class="modal-title"><span class="glyphicon glyphicon-star"></span> Modificar post individual</h4></div><div class="modal-body"><label class="control-label" for="customValue">ID:</label><input type="text" class="form-control" id="customValue" ng-model="current_post.ID" ng-keyup="hitEnter($event)"><span class="help-block">ID del post a modificar.</span></div><div class="modal-footer"><button type="button" class="btn btn-default" ng-click="done()">Volver</button></div>');
 }]);
