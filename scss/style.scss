@@ -306,6 +306,10 @@ td {
   line-height: 40px;
   font-weight: 300;
   padding: 0 10px;
+  .status{
+    white-space:nowrap;
+    vertical-align:middle;
+  }
 }
 
 @media screen and (min-width:600px) {

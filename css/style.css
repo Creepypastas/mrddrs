@@ -298,6 +298,10 @@ td {
   font-weight: 300;
   padding: 0 10px;
 }
+td .status {
+  white-space: nowrap;
+  vertical-align: middle;
+}
 
 @media screen and (min-width: 600px) {
   html, body {
@@ -396,13 +400,5 @@ td {
 .mrddrs-icon-error {
   color: lightcoral;
 }
-
-.sortorder:after {
-  content: '\25b2';
-}
-.sortorder.reverse:after {
-  content: '\25bc';
-}
-
 
 /*# sourceMappingURL=style.css.map */

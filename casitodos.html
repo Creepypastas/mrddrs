@@ -61,7 +61,7 @@
         <tr ng-repeat="post in mrddrs.posts.casitodos | filter:search | orderBy:mrddrs.predicate:mrddrs.reverse">
           <td>{{post.ID}}</td>
           <td><a ng-href="{{post.url}}">{{post.post_title}}</a></td>
-          <td>
+          <td class="status">
             <span ng-click="mrddrs.launch('edit-single-post',post)">{{post.post_status}} <i class="fa fa-pencil"></i></span>
           </td>
         </tr>
