@@ -5,8 +5,9 @@
     <label class="control-label" for="customValue">ID:</label>
     <span>{{current_post.ID}}</span>
 
-    {{current_post}}
+    <pre>{{current_post}}</pre>
 </div>
 <div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="getPost(current_post.ID)">Edición completa</button>
     <button type="button" class="btn btn-default" ng-click="done()">Volver</button>
 </div>
