@@ -84,7 +84,7 @@ angular.module('mrddrs.creepypastas.com', ['angular-loading-bar','ui.bootstrap',
 
 }])
 
-.controller('editSinglePostStatusCtrl', ['$scope','$$http','$uibModalInstance','data',function($scope,$http,$uibModalInstance,data){
+.controller('editSinglePostStatusCtrl', ['$scope','$http','$uibModalInstance','data',function($scope,$http,$uibModalInstance,data){
   $scope.current_post = data;
   $scope.done = function(){
     $uibModalInstance.close($scope.current_post);
