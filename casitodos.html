@@ -47,18 +47,18 @@
           <th>
             <span ng-click="mrddrs.order('ID')">ID</span>
             <i ng-show="mrddrs.predicate === 'ID'" class="fa" ng-class="{'fa-caret-down':mrddrs.reverse, 'fa-caret-up':!mrddrs.reverse}"></i>
-            <input ng-model="search.ID">
+            <input ng-model="mrddrs.search.ID">
           </th>
           <th>
             <span ng-click="mrddrs.order('post_title')">Título</span>
             <i ng-show="mrddrs.predicate === 'post_title'" class="fa" ng-class="{'fa-caret-down':mrddrs.reverse, 'fa-caret-up':!mrddrs.reverse}"></i>
-            <input ng-model="search.post_title"></th>
+            <input ng-model="mrddrs.search.post_title"></th>
           <th>
             <span ng-click="mrddrs.order('post_status')">Estado</span>
             <i ng-show="mrddrs.predicate === 'post_status'" class="fa" ng-class="{'fa-caret-down':mrddrs.reverse, 'fa-caret-up':!mrddrs.reverse}"></i>
-            <input ng-model="search.post_status"></th>
+            <input ng-model="mrddrs.search.post_status"></th>
         </tr>
-        <tr ng-repeat="post in mrddrs.posts.casitodos | filter:search | orderBy:mrddrs.predicate:mrddrs.reverse">
+        <tr ng-repeat="post in mrddrs.posts.casitodos | filter:mrddrs.search | orderBy:mrddrs.predicate:mrddrs.reverse">
           <td>{{post.ID}}</td>
           <td><a ng-href="{{post.url}}">{{post.post_title}}</a></td>
           <td class="status">

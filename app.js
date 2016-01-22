@@ -17,6 +17,10 @@ angular.module('mrddrs.creepypastas.com', ['angular-loading-bar','ui.bootstrap',
     {name:'tumba'}
   ];
 
+  mrddrs.search = {
+    post_status: 'pending'
+  };
+
   mrddrs.posts.loadByStatus = function(status){
     console.log('loadByStatus::' + status);
     switch (status) {
