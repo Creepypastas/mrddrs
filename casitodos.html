@@ -60,7 +60,10 @@
         </tr>
         <tr ng-repeat="post in mrddrs.posts.casitodos | filter:mrddrs.search | orderBy:mrddrs.predicate:mrddrs.reverse">
           <td>{{post.ID}}</td>
-          <td><a ng-href="{{post.url}}">{{post.post_title}}</a></td>
+          <td ng-mouseover="count = count + 1">
+            <span ng-click="mrddrs.launch('read-single-post',post)" class="status cursor-zoom-in"><i class="fa fa-arrows-alt"></i> {{post.post_title}}</span>
+            <a ng-href="{{post.url}}" target="_blank"><i class="fa fa-external-link"></i></a>
+          </td>
           <td class="status">
             <span ng-click="mrddrs.launch('edit-single-post',post)">{{post.post_status}} <i class="fa fa-pencil"></i></span>
           </td>

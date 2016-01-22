@@ -1,0 +1,11 @@
+<section class="dialog-edit">
+  <div class="modal-header">
+      <h4 class="modal-title"><i class="fa fa-file-text"></i> {{current_post.post_title}}</h4>
+  </div>
+  <div class="modal-body">
+    <article ng-bind-html="current_post.post_content"></article>
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-default" ng-click="done()">Volver <i class="fa fa-compress"></i></button>
+  </div>
+</section>

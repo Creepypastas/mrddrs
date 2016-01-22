@@ -76,12 +76,16 @@ angular.module('mrddrs.creepypastas.com', ['angular-loading-bar','ui.bootstrap',
   };
 
   mrddrs.launch = function(which, data){
+    var dlg = null;
     switch(which){
       case 'edit-single-post':
-        var dlg = dialogs.create('/dialogs/edit-single-post-status.html','editSinglePostStatusCtrl',data,{size:'lg',keyboard:true,backdrop:false});
+        dlg = dialogs.create('/dialogs/edit-single-post-status.html','editSinglePostStatusCtrl',data,{size:'lg',keyboard:true,backdrop:false});
         dlg.result.then(function(current_post){
           mrddrs.current_post = current_post;
         });
+        break;
+      case 'read-single-post':
+        dlg = dialogs.create('/dialogs/read-single-post.html','readSinglePostCtrl',data,{size:'lg',keyboard:true,backdrop:true});
         break;
     }
   };
@@ -118,5 +122,39 @@ angular.module('mrddrs.creepypastas.com', ['angular-loading-bar','ui.bootstrap',
       };
     });
   };
+
+}])
+.controller('readSinglePostCtrl', ['$scope','$http','$sce','$uibModalInstance','data',function($scope,$http,$sce,$uibModalInstance,data){
+  $scope.current_post = data;
+  $scope.done = function(){
+    $uibModalInstance.close($scope.current_post);
+  };
+
+  $scope.hitEnter = function(evt){
+    if(angular.equals(evt.keyCode,13))
+      $scope.done();
+  };
+
+  $scope.getPost = function(ID){
+    globalURL = 'https://json.creepypastas.com/creepypastas.com/post/';
+    posts_url = globalURL + ID;
+
+    $http.get(posts_url)
+    .then(function success(res){
+      $scope.current_post = res.data;
+      $scope.current_post.post_content = $sce.trustAsHtml($scope.current_post.post_content);
+      $scope.loading = {
+        isLoading : false,
+        error: false
+      };
+    },function error(res){
+        $scope.loading = {
+        isLoading : false,
+        error: true
+      };
+    });
+  };
+
+  $scope.getPost( $scope.current_post.ID );
 
 }]);
