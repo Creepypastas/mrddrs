@@ -84,7 +84,7 @@ angular.module('mrddrs.creepypastas.com', ['angular-loading-bar','ui.bootstrap',
 
 }])
 
-.controller('editSinglePostStatusCtrl', ['$scope','$uibModalInstance','data',function($scope,$uibModalInstance,data){
+.controller('editSinglePostStatusCtrl', ['$scope','$http','$uibModalInstance','data',function($scope,$http,$uibModalInstance,data){
   $scope.current_post = data;
   $scope.done = function(){
     $uibModalInstance.close($scope.current_post);
@@ -94,4 +94,24 @@ angular.module('mrddrs.creepypastas.com', ['angular-loading-bar','ui.bootstrap',
     if(angular.equals(evt.keyCode,13))
       $scope.done();
   };
+
+  $scope.getPost = function(ID){
+    globalURL = 'https://json.creepypastas.com/creepypastas.com/post/';
+    posts_url = globalURL + ID;
+
+    $http.get(posts_url)
+    .then(function success(res){
+      $scope.current_post = res.data;
+      $scope.loading = {
+        isLoading : false,
+        error: false
+      };
+    },function error(res){
+        $scope.loading = {
+        isLoading : false,
+        error: true
+      };
+    });
+  };
+
 }]);
