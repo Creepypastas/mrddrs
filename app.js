@@ -142,7 +142,8 @@ angular.module('mrddrs.creepypastas.com', ['angular-loading-bar','ui.bootstrap',
     $http.get(posts_url)
     .then(function success(res){
       $scope.current_post = res.data;
-      $scope.current_post.post_content = $sce.trustAsHtml($scope.current_post.post_content);
+      post_content_br = nl2br($scope.current_post.post_content);
+      $scope.current_post.post_content = $sce.trustAsHtml(post_content_br);
       $scope.loading = {
         isLoading : false,
         error: false
@@ -158,3 +159,21 @@ angular.module('mrddrs.creepypastas.com', ['angular-loading-bar','ui.bootstrap',
   $scope.getPost( $scope.current_post.ID );
 
 }]);
+
+
+var nl2br = function (str) {
+  //  discuss at: http://phpjs.org/functions/nl2br/
+  // original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  // improved by: Philip Peterson
+  // improved by: Onno Marsman
+  // improved by: Atli Þór
+  // improved by: Brett Zamir (http://brett-zamir.me)
+  // improved by: Maximusya
+  // bugfixed by: Onno Marsman
+  // bugfixed by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+  //    input by: Brett Zamir (http://brett-zamir.me)
+
+  var breakTag = '<br>';
+  return (str + '')
+    .replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
+};
