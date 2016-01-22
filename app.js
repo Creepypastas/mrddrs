@@ -74,7 +74,7 @@ angular.module('mrddrs.creepypastas.com', ['angular-loading-bar','ui.bootstrap',
   mrddrs.launch = function(which, data){
     switch(which){
       case 'edit-single-post':
-        var dlg = dialogs.create('/dialogs/edit-single-post-status','editSinglePostStatusCtrl',data,{size:'lg',keyboard:true,backdrop:false});
+        var dlg = dialogs.create('/dialogs/edit-single-post-status.html','editSinglePostStatusCtrl',data,{size:'lg',keyboard:true,backdrop:false});
         dlg.result.then(function(current_post){
           mrddrs.current_post = current_post;
         });
@@ -94,8 +94,4 @@ angular.module('mrddrs.creepypastas.com', ['angular-loading-bar','ui.bootstrap',
     if(angular.equals(evt.keyCode,13))
       $scope.done();
   };
-}])
-
-.run(['$templateCache',function($templateCache){
-  $templateCache.put('/dialogs/edit-single-post-status','<div class="modal-header"><h4 class="modal-title"><span class="glyphicon glyphicon-star"></span> Modificar post individual</h4></div><div class="modal-body"><label class="control-label" for="customValue">ID:</label><input type="text" class="form-control" id="customValue" ng-model="current_post.ID" ng-keyup="hitEnter($event)"><span class="help-block">ID del post a modificar.</span></div><div class="modal-footer"><button type="button" class="btn btn-default" ng-click="done()">Volver</button></div>');
 }]);
