@@ -88,7 +88,7 @@ angular.module('mrddrs.creepypastas.com', ['angular-loading-bar','ui.bootstrap',
 
 }])
 
-.controller('editSinglePostStatusCtrl', ['$scope','$http','$uibModalInstance','data',function($scope,$http,$uibModalInstance,data){
+.controller('editSinglePostStatusCtrl', ['$scope','$http','$sce','$uibModalInstance','data',function($scope,$http,$sce,$uibModalInstance,data){
   $scope.current_post = data;
   $scope.done = function(){
     $uibModalInstance.close($scope.current_post);
@@ -106,6 +106,7 @@ angular.module('mrddrs.creepypastas.com', ['angular-loading-bar','ui.bootstrap',
     $http.get(posts_url)
     .then(function success(res){
       $scope.current_post = res.data;
+      $scope.current_post.post_content = $sce.trustAsHtml($scope.current_post.post_content);
       $scope.loading = {
         isLoading : false,
         error: false

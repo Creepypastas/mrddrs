@@ -1,13 +1,15 @@
-<div class="modal-header">
-    <h4 class="modal-title"><i class="fa fa-pencil-square-o"></i> {{current_post.post_title}}</h4>
-</div>
-<div class="modal-body">
+<section class="dialog-edit">
+  <div class="modal-header">
+      <h4 class="modal-title"><i class="fa fa-pencil-square-o"></i> {{current_post.post_title}}</h4>
+  </div>
+  <div class="modal-body">
     <label class="control-label" for="customValue">ID:</label>
     <span>{{current_post.ID}}</span>
-
-    <pre>{{current_post}}</pre>
-</div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-default" ng-click="getPost(current_post.ID)">Edición completa</button>
-    <button type="button" class="btn btn-default" ng-click="done()">Volver</button>
-</div>
+    <label class="control-label" for="current_post_content">Contenido:</label>
+    <article ng-bind-html="current_post.post_content"></article>
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-default" ng-click="getPost(current_post.ID)">Edición completa</button>
+      <button type="button" class="btn btn-default" ng-click="done()">Volver</button>
+  </div>
+</section>
