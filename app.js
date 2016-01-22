@@ -36,21 +36,32 @@ angular.module('mrddrs.creepypastas.com', ['angular-loading-bar'])
       posts_url = null;
     }
 
-    if(posts_url === null)
+    if(posts_url === null){
       return;
-    mrddrs.loading[status] = true;
+    }
+    mrddrs.loading[status] = {isLoading : true};
     $http.get(posts_url)
-    .then(function(res){
+    .then(function success(res){
       mrddrs.posts[status] = res.data;
-      mrddrs.loading[status] = false;
+      mrddrs.loading[status] = {
+        isLoading : false,
+        error: false
+      };
       mrddrs.updates[status] = Date(res.headers()['last-modified']);
+    },function error(res){
+      mrddrs.loading[status] = {
+        isLoading : false,
+        error: true
+      };
     });
   };
 
-  mrddrs.refreshClass = function(status){
-    if(mrddrs.loading[status] === true)
-      return 'fa fa-refresh fa-spin';
-    return 'fa fa-refresh';
+  mrddrs.predicate = 'ID';
+  mrddrs.reverse = true;
+  mrddrs.order = function(predicate) {
+    console.log('order:' + predicate);
+    mrddrs.reverse = (mrddrs.predicate === predicate) ? !mrddrs.reverse : false;
+    mrddrs.predicate = predicate;
   };
 
   mrddrs.statusClass = function(post_status, list_status){
