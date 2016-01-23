@@ -123,6 +123,8 @@ angular.module('mrddrs.creepypastas.com', ['angular-loading-bar','ui.bootstrap',
     });
   };
 
+  $scope.getPost( $scope.current_post.ID );
+
 }])
 .controller('readSinglePostCtrl', ['$scope','$http','$sce','$uibModalInstance','data',function($scope,$http,$sce,$uibModalInstance,data){
   $scope.current_post = data;

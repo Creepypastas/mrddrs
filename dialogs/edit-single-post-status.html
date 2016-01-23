@@ -5,8 +5,17 @@
   <div class="modal-body">
     <label class="control-label" for="customValue">ID:</label>
     <span>{{current_post.ID}}</span>
-    <label class="control-label" for="current_post_content">Contenido:</label>
-    <article ng-bind-html="current_post.post_content"></article>
+
+    <label class="control-label" for="post_categories">Categorías:</label>
+    <div>
+      <spa ng-repeat="category in current_post.post_categories">{{category.name}}</span>
+    </div>
+
+    <label class="control-label" for="post_tags">Etiquetas:</label>
+    <div>
+      <spa ng-repeat="tag in current_post.post_tags">{{tag.name}}</span>
+    </div>
+
   </div>
   <div class="modal-footer">
       <button type="button" class="btn btn-default" ng-click="getPost(current_post.ID)">Edición completa</button>
