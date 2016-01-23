@@ -104,7 +104,7 @@ angular.module('mrddrs.creepypastas.com', ['angular-loading-bar','ui.bootstrap',
   };
 
   $scope.getPost = function(ID){
-    globalURL = 'https://json.creepypastas.com/creepypastas.com/post/';
+    globalURL = 'https://cli.creepypastas.com/single-post.cgi?post_id=';
     posts_url = globalURL + ID;
 
     $http.get(posts_url)
