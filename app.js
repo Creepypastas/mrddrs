@@ -11,10 +11,26 @@ angular.module('mrddrs.creepypastas.com', ['angular-loading-bar','ui.bootstrap',
   mrddrs.updates = {};
   mrddrs.loading = {};
   mrddrs.statusList = [
-    {name:'publish'},
-    {name:'nuevo'},
-    {name:'pending'},
-    {name:'tumba'}
+    {
+      name:'publish',
+      desc:'publicaciones de la portada',
+      load:true
+    },
+    {
+      name:'nuevo',
+      desc:'envíos de los usuarios',
+      load:true
+    },
+    {
+      name:'pending',
+      desc:'envíos pendientes',
+      load:true
+    },
+    {
+      name:'tumba',
+      desc:'entradas del cementerio',
+      load:false
+    },
   ];
 
   mrddrs.search = {

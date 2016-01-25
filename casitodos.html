@@ -23,21 +23,30 @@
   <nav role='navigation'>
     <ul class="main">
       <li class="dashboard"><a href="index.html">Panel</a></li>
-      <li class="edit"><a href="pendientes.html">Envíos pendientes</a></li>
-      <li class="edit"><a href="envios.html">Nuevos envíos</a></li>
-      <li class="edit"><a href="cementerio.html">Cementerio</a></li>
-      <li class="edit"><a href="casitodos.html">Portafolio</a></li>
+      <li class="edit"><a href="casitodos.html">Entradas</a></li>
     </ul>
   </nav>
-  <main role="main" ng-app="mrddrs.creepypastas.com" ng-cloak="">
-    <section class="panel important">
+  <main role="main" ng-app="mrddrs.creepypastas.com" ng-cloak="" ng-controller="posts-CTRL as mrddrs">
+    <section class="panel">
       <h2>Bienvenido al panel de administración </h2>
       <ul>
         <li>La barra lateral permite <b>visualizar</b> las listas de posts.</li>
       </ul>
     </section>
 
-    <section class="panel important" ng-controller="posts-CTRL as mrddrs">
+    <section class="panel">
+      <h2><i class="fa fa-cogs"></i> Opciones</h2>
+      <ul>
+        <li ng-repeat="status in mrddrs.statusList">
+          <span ng-click="status.load = !status.load;">
+            <i class="fa" ng-class="{'fa-check-square-o':status.load,'fa-square-o':!status.load}"></i>
+            Cargar <b><i>{{status.desc}}</i></b>
+          <span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="panel important">
       <h2 ng-init="mrddrs.posts.loadByStatus('casitodos')">
         Portafolio de creepypastas
         <i ng-click="mrddrs.posts.loadByStatus('casitodos')" class="fa fa-refresh" ng-class="{'fa-spin' : mrddrs.loading.casitodos.isLoading, 'mrddrs-icon-error' : mrddrs.loading.casitodos.error}"></i>
