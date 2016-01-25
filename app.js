@@ -138,6 +138,10 @@ angular.module('mrddrs.creepypastas.com', ['angular-loading-bar','ui.bootstrap',
 
 .controller('editSinglePostStatusCtrl', ['$scope','$http','$sce','$uibModalInstance','data',function($scope,$http,$sce,$uibModalInstance,data){
   $scope.current_post = data;
+  $scope.terms = {
+    categories : [],
+    post_tags: []
+  };
   $scope.done = function(){
     $uibModalInstance.close($scope.current_post);
   }; // end done
@@ -146,6 +150,8 @@ angular.module('mrddrs.creepypastas.com', ['angular-loading-bar','ui.bootstrap',
     if(angular.equals(evt.keyCode,13))
       $scope.done();
   };
+
+  
 
   $scope.getPost = function(ID){
     globalURL = 'https://cli.creepypastas.com/single-post.cgi?post_id=';
@@ -167,7 +173,43 @@ angular.module('mrddrs.creepypastas.com', ['angular-loading-bar','ui.bootstrap',
     });
   };
 
+  $scope.getPostTermsByTaxonomy = function(taxonomy){
+    var globalURL = 'https://json.creepypastas.com/creepypastas.com/terms/';
+    var taxonomyPlural = '';
+    var taxonomyFileName = '';
+
+    switch (taxonomy) {
+      case 'category':
+      case 'categories':
+        taxonomyFileName = 'categories.json';
+        taxonomyPlural = 'categories';
+        break;
+      case 'tag':
+      case 'post_tag':
+      case 'post_tags':
+        taxonomyFileName = 'post_tags.json';
+        taxonomyPlural = 'post_tags';
+        break;
+      default:
+        taxonomyFileName = null;
+        break;
+    }
+
+    if(taxonomyFileName === null){
+      return;
+    }
+    taxonomyURL = globalURL + taxonomyFileName;
+    $http.get(taxonomyURL)
+    .then(function success(res){
+      console.log(taxonomyPlural + '::' + res.data.length + 'found');
+      $scope.terms[taxonomyPlural] = res.data;
+      console.log($scope.terms);
+    });
+  };
+
   $scope.getPost( $scope.current_post.ID );
+  $scope.getPostTermsByTaxonomy('post_tags');
+  $scope.getPostTermsByTaxonomy('categories');
 
 }])
 .controller('readSinglePostCtrl', ['$scope','$http','$sce','$uibModalInstance','data',function($scope,$http,$sce,$uibModalInstance,data){

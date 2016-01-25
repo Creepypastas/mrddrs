@@ -1,24 +1,45 @@
 <section class="dialog-edit">
   <div class="modal-header">
-      <h4 class="modal-title"><i class="fa fa-pencil-square-o"></i> {{current_post.post_title}}</h4>
+    <h4 class="modal-title"><i class="fa fa-pencil-square-o"></i> {{current_post.post_title}}</h4>
   </div>
   <div class="modal-body">
-    <label class="control-label" for="customValue">ID:</label>
-    <span>{{current_post.ID}}</span>
 
-    <label class="control-label" for="post_categories">Categorías:</label>
-    <div>
-      <spa ng-repeat="category in current_post.post_categories">{{category.name}}</span>
-    </div>
+    <div class="row"><!-- inicia row de categorías -->
+      <div class="col-md-8">
+        <ul class="tag-cloud-container">
+          <li class="tag-cloud tag-cloud-inverse"
+          ng-click="terms.categories.splice($index, 1); current_post.post_categories.push(category);"
+          ng-repeat="category in terms.categories">{{category.name}}</li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <ul class="tag-cloud-container">
+          <li class="tag-cloud tag-cloud-success"
+          ng-click="current_post.post_categories.splice($index, 1); terms.categories.push(category);"
+          ng-repeat="category in current_post.post_categories">{{category.name}}</li>
+        </ul>
+      </div>
+    </div><!-- //termina row de categorías -->
 
-    <label class="control-label" for="post_tags">Etiquetas:</label>
-    <div>
-      <spa ng-repeat="tag in current_post.post_tags">{{tag.name}}</span>
-    </div>
+    <div class="row"><!-- inicia row de etiquetas -->
+      <div class="col-md-8">
+        <ul class="tag-cloud-container">
+          <li class="tag-cloud tag-cloud-info"
+          ng-click="terms.post_tags.splice($index, 1); current_post.post_tags.push(tag);"
+          ng-repeat="tag in terms.post_tags">{{tag.name}}</li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <ul class="tag-cloud-container">
+          <li class="tag-cloud tag-cloud-success"
+          ng-click="current_post.post_tags.splice($index, 1); terms.post_tags.push(tag);"
+          ng-repeat="tag in current_post.post_tags">{{tag.name}}</li>
+        </ul>
+      </div>
+    </div><!-- //termina row de etiquetas -->
 
   </div>
   <div class="modal-footer">
-      <button type="button" class="btn btn-default" ng-click="getPost(current_post.ID)">Edición completa</button>
-      <button type="button" class="btn btn-default" ng-click="done()">Volver</button>
+    <button type="button" class="btn btn-default" ng-click="done()">Volver <i class="fa fa-compress"></i></button>
   </div>
 </section>
