@@ -38,7 +38,7 @@
       <h2><i class="fa fa-cogs"></i> Opciones</h2>
       <ul>
         <li ng-repeat="status in mrddrs.statusList">
-          <span ng-click="status.load = !status.load;">
+          <span ng-click="status.load = !status.load; mrddrs.posts.loadByStatusList()">
             <i class="fa" ng-class="{'fa-check-square-o':status.load,'fa-square-o':!status.load}"></i>
             Cargar <b><i>{{status.desc}}</i></b>
           <span>
@@ -47,9 +47,9 @@
     </section>
 
     <section class="panel important">
-      <h2 ng-init="mrddrs.posts.loadByStatus('casitodos')">
+      <h2 ng-init="mrddrs.posts.loadByStatusList()">
         Portafolio de creepypastas
-        <i ng-click="mrddrs.posts.loadByStatus('casitodos')" class="fa fa-refresh" ng-class="{'fa-spin' : mrddrs.loading.casitodos.isLoading, 'mrddrs-icon-error' : mrddrs.loading.casitodos.error}"></i>
+        <i ng-click="mrddrs.posts.loadByStatusList()" class="fa fa-refresh" ng-class="{'fa-spin' : mrddrs.loading.casitodos.isLoading, 'mrddrs-icon-error' : mrddrs.loading.casitodos.error}"></i>
       </h2>
       <table>
         <tr>

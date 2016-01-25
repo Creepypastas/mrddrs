@@ -3,6 +3,7 @@ angular.module('mrddrs.creepypastas.com', ['angular-loading-bar','ui.bootstrap',
 
   var mrddrs = this;
   mrddrs.posts = {
+    portada:[],
     envios:[],
     pendientes:[],
     cementerio:[],
@@ -13,33 +14,49 @@ angular.module('mrddrs.creepypastas.com', ['angular-loading-bar','ui.bootstrap',
   mrddrs.statusList = [
     {
       name:'publish',
+      altn:'portada',
       desc:'publicaciones de la portada',
-      load:true
+      load:false
     },
     {
       name:'nuevo',
+      altn:'envios',
       desc:'envíos de los usuarios',
-      load:true
+      load:false
     },
     {
       name:'pending',
+      altn:'pendientes',
       desc:'envíos pendientes',
       load:true
     },
     {
       name:'tumba',
+      altn:'cementerio',
       desc:'entradas del cementerio',
       load:false
     },
   ];
 
   mrddrs.search = {
-    post_status: 'pending'
+  };
+
+  mrddrs.posts.loadByStatusList = function(){
+    console.log('loadByStatusList::');
+    mrddrs.posts.casitodos = [];
+    for (var s_i=0, l=mrddrs.statusList.length; s_i<l; s_i++ ) {
+      if(mrddrs.statusList[s_i].load){
+        mrddrs.posts.loadByStatus(mrddrs.statusList[s_i].altn);
+      }
+    }
   };
 
   mrddrs.posts.loadByStatus = function(status){
     console.log('loadByStatus::' + status);
     switch (status) {
+      case 'portada':
+        posts_url = 'https://creepypastas.com/wdgts/mrddrs.creepypastas.com/publish.json';
+        break;
       case 'cementerio':
         posts_url = 'https://creepypastas.com/wdgts/mrddrs.creepypastas.com/tumba.json';
         break;
@@ -60,16 +77,27 @@ angular.module('mrddrs.creepypastas.com', ['angular-loading-bar','ui.bootstrap',
       return;
     }
     mrddrs.loading[status] = {isLoading : true};
+    mrddrs.loading.casitodos = {isLoading : true};
     $http.get(posts_url)
     .then(function success(res){
+      Array.prototype.push.apply(mrddrs.posts.casitodos, res.data);
+
       mrddrs.posts[status] = res.data;
       mrddrs.loading[status] = {
+        isLoading : false,
+        error: false
+      };
+      mrddrs.loading.casitodos = {
         isLoading : false,
         error: false
       };
       mrddrs.updates[status] = Date(res.headers()['last-modified']);
     },function error(res){
       mrddrs.loading[status] = {
+        isLoading : false,
+        error: true
+      };
+      mrddrs.loading.casitodos = {
         isLoading : false,
         error: true
       };
