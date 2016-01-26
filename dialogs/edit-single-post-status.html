@@ -3,7 +3,7 @@
     <h4 class="modal-title">
       <i ng-show="loading.updating.isLoading" class="fa fa-spinner fa-spin pull-right"></i>
       <i class="fa fa-pencil-square-o"></i>
-      {{current_post.post_title}}
+      <input class="inline-editable" ng-model="current_post.post_title" type="text" required="">
     </h4>
   </div>
   <div class="modal-body">

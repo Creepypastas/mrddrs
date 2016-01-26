@@ -405,3 +405,10 @@ td.status {
 .cursor-pointer{
   cursor: pointer;
 }
+
+.inline-editable{
+  border:solid 1px #dde;
+  padding-left: 1em;
+  padding-right: 1em;
+  display: inline;
+}
