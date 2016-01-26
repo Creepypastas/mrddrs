@@ -2,6 +2,8 @@
   "name": "mrddrs",
   "description": "mrddrs.creepypastas.com",
   "launch_path": "/index.html",
+  "fullscreen": "true",
+  "orientation": ["landscape-primary"],
   "icons": {
     "16": "/icons/s.16.png",
     "48": "/icons/s.48.png",
