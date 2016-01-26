@@ -29,9 +29,10 @@
   </nav>
   <main role="main" ng-app="mrddrs.creepypastas.com" ng-cloak="" ng-controller="posts-CTRL as mrddrs">
     <section class="panel">
-      <h2>Bienvenido al panel de administración </h2>
+      <h2>¡Saludos, {{mrddrs.$storage.current_user.username}}!</h2>
       <ul>
-        <li>La barra lateral permite <b>visualizar</b> las listas de posts.</li>
+        <li><b><i class="fa fa-user"></i></b> {{mrddrs.$storage.current_user.username}}</li>
+        <li><b><i class="fa fa-unlock"></i></b> {{mrddrs.$storage.current_user.p}}</li>
       </ul>
     </section>
 
@@ -84,6 +85,7 @@
   </main>
   <footer role="contentinfo">Creepypastas.com está hecho con Wordpress, BuddyPress y <i>mucho amor</i></footer>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.1/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.10/ngStorage.min.js"></script>
   <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.js'></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.4.8/angular-sanitize.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.1.0/ui-bootstrap-tpls.min.js"></script>
