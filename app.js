@@ -1,7 +1,18 @@
-angular.module('mrddrs.creepypastas.com', ['angular-loading-bar','ui.bootstrap','dialogs.main'])
-.controller('posts-CTRL', ['$http','dialogs',function($http,dialogs) {
+angular.module('mrddrs.creepypastas.com', ['angular-loading-bar','ui.bootstrap','dialogs.main','ngStorage'])
+
+.config(['$localStorageProvider',
+function ($localStorageProvider) {
+  var current_user = $localStorageProvider.get('current_user');
+  if( !current_user ){
+    $localStorageProvider.set('current_user', { username: 'invitado', p: 'invitado' });
+  }
+}])
+
+.controller('posts-CTRL', ['$http','dialogs','$localStorage',function($http,dialogs,$localStorage) {
 
   var mrddrs = this;
+
+  mrddrs.$storage = $localStorage;
   mrddrs.posts = {
     portada:[],
     envios:[],
@@ -136,22 +147,111 @@ angular.module('mrddrs.creepypastas.com', ['angular-loading-bar','ui.bootstrap',
 
 }])
 
-.controller('editSinglePostStatusCtrl', ['$scope','$http','$sce','$uibModalInstance','data',function($scope,$http,$sce,$uibModalInstance,data){
+.controller('editSinglePostStatusCtrl', ['$scope','$http','$sce','$uibModalInstance','data','$localStorage',function($scope,$http,$sce,$uibModalInstance,data,$localStorage){
   $scope.current_post = data;
+  $scope.current_user = $localStorage.current_user;
+  /*
+  TODO:
+      de-duplicar esta lista con la de mrddrs.statusList
+  */
+  $scope.statusList = [
+    {
+      name:'publish',
+      altn:'portada',
+      desc:'publicaciones de la portada',
+      load:false
+    },
+    {
+      name:'nuevo',
+      altn:'envios',
+      desc:'envíos de los usuarios',
+      load:false
+    },
+    {
+      name:'pending',
+      altn:'pendientes',
+      desc:'envíos pendientes',
+      load:true
+    },
+    {
+      name:'tumba',
+      altn:'cementerio',
+      desc:'entradas del cementerio',
+      load:false
+    },
+  ];
+
+  $scope.current_post_status =         {
+        name:'publish',
+        altn:'portada',
+        desc:'publicaciones de la portada',
+        load:false
+      };
+
+
+
   $scope.terms = {
     categories : [],
     post_tags: []
   };
-  $scope.done = function(){
-    $uibModalInstance.close($scope.current_post);
-  }; // end done
+
+  $scope.loading = {
+    updating:{
+      isLoading:false,
+      error:false
+    }
+  };
+
+
+  $scope.save = function(){
+    $scope.updatePost();
+  }; // end save
+
+  $scope.back = function(){
+    $uibModalInstance.close({msg:'back'});
+  };
 
   $scope.hitEnter = function(evt){
     if(angular.equals(evt.keyCode,13))
       $scope.done();
   };
 
-  
+  $scope.updatePost = function(){
+    $scope.loading.updating = {
+      isLoading : true,
+      error: false
+    };
+
+    $http({
+      url: 'https://creepypastas.com/comand',
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      data: {
+        user:$scope.current_user,
+        post:$scope.current_post,
+        command:'updatePost'
+      }
+    })
+    .then(function success(res){
+      console.log("updatePost::response");
+      console.log(res);
+
+      $scope.loading.updating = {
+        isLoading : false,
+        error: false
+      };
+    },function error(res){
+      console.error("updatePost::response");
+      console.error(res);
+
+      $scope.loading.updating = {
+        isLoading : false,
+        error: true
+      };
+    });
+
+  };
+
 
   $scope.getPost = function(ID){
     globalURL = 'https://cli.creepypastas.com/single-post.cgi?post_id=';
