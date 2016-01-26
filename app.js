@@ -302,9 +302,8 @@ function ($localStorageProvider) {
     taxonomyURL = globalURL + taxonomyFileName;
     $http.get(taxonomyURL)
     .then(function success(res){
-      console.log(taxonomyPlural + '::' + res.data.length + 'found');
+      console.log(taxonomyPlural + '::' + res.data.length + ' found');
       $scope.terms[taxonomyPlural] = res.data;
-      console.log($scope.terms);
     });
   };
 
