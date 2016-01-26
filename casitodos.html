@@ -31,8 +31,8 @@
     <section class="panel">
       <h2>¡Saludos, {{mrddrs.$storage.current_user.username}}!</h2>
       <ul>
-        <li><b><i class="fa fa-user"></i></b> {{mrddrs.$storage.current_user.username}}</li>
-        <li><b><i class="fa fa-unlock"></i></b> {{mrddrs.$storage.current_user.p}}</li>
+        <li><b><i class="fa fa-user"></i></b> <input class="inline-editable" type="text" ng-model="mrddrs.$storage.current_user.username"></li>
+        <li><b><i class="fa fa-unlock"></i></b> <input class="inline-editable" type="text" ng-model="mrddrs.$storage.current_user.p"></li>
       </ul>
     </section>
 

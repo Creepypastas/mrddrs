@@ -234,15 +234,16 @@ function ($localStorageProvider) {
     })
     .then(function success(res){
       console.log("updatePost::response");
-      console.log(res);
-
+      console.log(res.data);
+      $scope.updateresult = res.data;
       $scope.loading.updating = {
         isLoading : false,
         error: false
       };
     },function error(res){
       console.error("updatePost::response");
-      console.error(res);
+      console.error(res.data);
+      $scope.updateresult = res.data;
 
       $scope.loading.updating = {
         isLoading : false,

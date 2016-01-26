@@ -2,6 +2,10 @@
   <div class="modal-header">
     <h4 class="modal-title">
       <i ng-show="loading.updating.isLoading" class="fa fa-spinner fa-spin pull-right"></i>
+      <b ng-show="!loading.updating.isLoading" class="pull-right">
+        {{updateresult.res}}
+        <i class="fa" ng-class="{'fa-check-circle':updateresult.success === true,'fa-times-circle':updateresult.success === false}"></i>
+      </b>
       <i class="fa fa-pencil-square-o"></i>
       <input class="inline-editable" ng-model="current_post.post_title" type="text" required="">
     </h4>
