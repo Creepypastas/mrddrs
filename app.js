@@ -179,6 +179,12 @@ function ($localStorageProvider) {
       desc:'entradas del cementerio',
       load:false
     },
+    {
+      name:'draft',
+      altn:'borrador',
+      desc:'borradores',
+      load:false
+    }
   ];
 
   $scope.current_post_status =         {
