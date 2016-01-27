@@ -310,7 +310,8 @@ td {
 td.compact, th.compact {
   white-space:nowrap;
   vertical-align:middle;
-  width: 11em;
+  width: 8em;
+	text-align: center;
 }
 @media screen and (min-width:600px) {
   html, body {
