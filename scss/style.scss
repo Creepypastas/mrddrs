@@ -307,9 +307,10 @@ td {
   font-weight: 300;
   padding: 0 10px;
 }
-td.status {
+td.status, th.compact {
   white-space:nowrap;
   vertical-align:middle;
+  width: 11em;
 }
 @media screen and (min-width:600px) {
   html, body {
