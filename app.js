@@ -162,6 +162,12 @@ function ($localStorageProvider) {
       load:false
     },
     {
+      name:'decorum',
+      altn:'Decorum',
+      desc:'Decorum',
+      load:false
+    },
+    {
       name:'nuevo',
       altn:'envios',
       desc:'envíos de los usuarios',
@@ -176,6 +182,12 @@ function ($localStorageProvider) {
     {
       name:'tumba',
       altn:'cementerio',
+      desc:'entradas del cementerio',
+      load:false
+    },
+    {
+      name:'rejected',
+      altn:'Rechazadas',
       desc:'entradas del cementerio',
       load:false
     },
