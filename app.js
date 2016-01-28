@@ -158,50 +158,42 @@ function ($localStorageProvider) {
     {
       name:'publish',
       altn:'portada',
-      desc:'publicaciones de la portada',
-      load:false
+      desc:'publicaciones de la portada'
     },
     {
       name:'decorum',
       altn:'Decorum',
-      desc:'Decorum',
-      load:false
+      desc:'Decorum'
     },
     {
       name:'future',
       altn:'Futuro',
-      desc:'Publicaciones programadas',
-      load:false
+      desc:'Publicaciones programadas'
     },
     {
       name:'nuevo',
       altn:'envios',
-      desc:'envíos de los usuarios',
-      load:false
+      desc:'envíos de los usuarios'
     },
     {
       name:'pending',
       altn:'pendientes',
-      desc:'envíos pendientes',
-      load:true
+      desc:'envíos pendientes'
     },
     {
       name:'tumba',
       altn:'cementerio',
-      desc:'entradas del cementerio',
-      load:false
+      desc:'entradas del cementerio'
     },
     {
       name:'rejected',
       altn:'Rechazadas',
-      desc:'entradas del cementerio',
-      load:false
+      desc:'entradas del cementerio'
     },
     {
       name:'draft',
       altn:'borrador',
-      desc:'borradores',
-      load:false
+      desc:'borradores'
     }
   ];
 
