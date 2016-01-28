@@ -30,6 +30,18 @@ function ($localStorageProvider) {
       load:false
     },
     {
+      name:'decorum',
+      altn:'Decorum',
+      desc:'Decorum',
+      load:true
+    },
+    {
+      name:'future',
+      altn:'Futuro',
+      desc:'Publicaciones programadas',
+      load:false
+    },
+    {
       name:'nuevo',
       altn:'envios',
       desc:'envíos de los usuarios',
@@ -47,6 +59,12 @@ function ($localStorageProvider) {
       desc:'entradas del cementerio',
       load:false
     },
+    {
+      name:'rejected',
+      altn:'Rechazadas',
+      desc:'envíos rechazadas',
+      load:false
+    }
   ];
 
   mrddrs.search = {
@@ -65,6 +83,18 @@ function ($localStorageProvider) {
   mrddrs.posts.loadByStatus = function(status){
     console.log('loadByStatus::' + status);
     switch (status) {
+      case 'future':
+      case 'Futuro':
+        posts_url = 'https://creepypastas.com/wdgts/mrddrs.creepypastas.com/future.json';
+        break;
+      case 'rejected':
+      case 'Rechazadas':
+        posts_url = 'https://creepypastas.com/wdgts/mrddrs.creepypastas.com/rejected.json';
+        break;
+      case 'decorum':
+      case 'Decorum':
+        posts_url = 'https://creepypastas.com/wdgts/mrddrs.creepypastas.com/decorum.json';
+        break;
       case 'portada':
         posts_url = 'https://creepypastas.com/wdgts/mrddrs.creepypastas.com/publish.json';
         break;
