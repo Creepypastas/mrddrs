@@ -29,16 +29,16 @@
   </nav>
   <main role="main" ng-app="mrddrs.creepypastas.com" ng-cloak="" ng-controller="posts-CTRL as mrddrs">
     <section class="panel">
-      <h2>¡Saludos, {{mrddrs.$storage.current_user.username}}!</h2>
-      <ul>
+      <h2 ng-click="mrddrs.switchPanels()"><i class="fa fa-user"></i> Cuenta @creepypastas <i  class="fa" ng-class="{'fa-caret-up':mrddrs.panels,'fa-caret-down':!mrddrs.panels}"></i></h2>
+      <ul ng-show="mrddrs.panels">
         <li><b><i class="fa fa-user"></i></b> <input class="inline-editable" type="text" ng-model="mrddrs.$storage.current_user.username"></li>
         <li><b><i class="fa fa-lock"></i></b> <input class="inline-editable" type="password" ng-model="mrddrs.$storage.current_user.p"></li>
       </ul>
     </section>
 
     <section class="panel">
-      <h2><i class="fa fa-cogs"></i> Opciones</h2>
-      <ul>
+      <h2 ng-click="mrddrs.switchPanels()"><i class="fa fa-cogs"></i> Opciones <i class="fa" ng-class="{'fa-caret-up':mrddrs.panels,'fa-caret-down':!mrddrs.panels}"></i></h2>
+      <ul ng-show="mrddrs.panels">
         <li ng-repeat="status in mrddrs.statusList">
           <span ng-click="status.load = !status.load; mrddrs.posts.loadByStatusList()">
             <i class="fa" ng-class="{'fa-check-square-o':status.load,'fa-square-o':!status.load}"></i>

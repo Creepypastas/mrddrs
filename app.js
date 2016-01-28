@@ -70,6 +70,18 @@ function ($localStorageProvider) {
   mrddrs.search = {
   };
 
+  mrddrs.panels = true;
+
+  mrddrs.switchPanels = function(){
+    if(mrddrs.panels===true){
+      mrddrs.panels=false;
+    }
+    else{
+      mrddrs.panels=true;
+    }
+  };
+
+
   mrddrs.posts.loadByStatusList = function(){
     console.log('loadByStatusList::');
     mrddrs.posts.casitodos = [];
