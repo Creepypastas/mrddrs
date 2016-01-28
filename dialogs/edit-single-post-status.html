@@ -49,6 +49,8 @@
   </div>
   <div class="modal-footer">
 
+    <input ng-show="current_post.post_status == 'future'" class="inline-editable" ng-model="current_post.post_date" type="text">
+
     <button type="button" class="btn btn-default" ng-click="back()">Volver <i class="fa fa-compress"></i></button>
 
     <select ng-model="current_post.post_status" class="btn btn-default">

@@ -168,6 +168,12 @@ function ($localStorageProvider) {
       load:false
     },
     {
+      name:'future',
+      altn:'Futuro',
+      desc:'Publicaciones programadas',
+      load:false
+    },
+    {
       name:'nuevo',
       altn:'envios',
       desc:'envíos de los usuarios',
