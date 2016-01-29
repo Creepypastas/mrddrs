@@ -191,6 +191,14 @@ function ($localStorageProvider) {
 
 .controller('editSinglePostStatusCtrl', ['$scope','$http','$sce','$uibModalInstance','data','$localStorage',function($scope,$http,$sce,$uibModalInstance,data,$localStorage){
   $scope.current_post = data;
+
+  if ($scope.current_post.post_tags == 'undefined'){
+    $scope.current_post.post_tags = [];
+  }
+  if ($scope.current_post.post_categories == 'undefined'){
+    $scope.current_post.post_categories = [];
+  }
+
   $scope.current_user = $localStorage.current_user;
   /*
   TODO:
@@ -320,6 +328,8 @@ function ($localStorageProvider) {
     .then(function success(res){
       $scope.current_post = res.data;
       $scope.current_post.post_content = $sce.trustAsHtml($scope.current_post.post_content);
+      $scope.getPostTermsByTaxonomy('post_tags');
+      $scope.getPostTermsByTaxonomy('categories');
       $scope.loading = {
         isLoading : false,
         error: false
@@ -335,6 +345,7 @@ function ($localStorageProvider) {
   $scope.getPostTermsByTaxonomy = function(taxonomy){
     var globalURL = 'https://json.creepypastas.com/creepypastas.com/terms/';
     var taxonomyPlural = '';
+    var taxonomyInPostName = '';
     var taxonomyFileName = '';
 
     switch (taxonomy) {
@@ -342,12 +353,14 @@ function ($localStorageProvider) {
       case 'categories':
         taxonomyFileName = 'categories.json';
         taxonomyPlural = 'categories';
+        taxonomyInPostName = 'post_categories';
         break;
       case 'tag':
       case 'post_tag':
       case 'post_tags':
         taxonomyFileName = 'post_tags.json';
         taxonomyPlural = 'post_tags';
+        taxonomyInPostName = 'post_tags';
         break;
       default:
         taxonomyFileName = null;
@@ -361,13 +374,12 @@ function ($localStorageProvider) {
     $http.get(taxonomyURL)
     .then(function success(res){
       console.log(taxonomyPlural + '::' + res.data.length + ' found');
-      $scope.terms[taxonomyPlural] = res.data;
+      $scope.terms[taxonomyPlural] = arrayDiff(res.data,$scope.current_post[taxonomyInPostName], 'term_id');
+
     });
   };
 
   $scope.getPost( $scope.current_post.ID );
-  $scope.getPostTermsByTaxonomy('post_tags');
-  $scope.getPostTermsByTaxonomy('categories');
 
 }])
 .controller('readSinglePostCtrl', ['$scope','$http','$sce','$uibModalInstance','data',function($scope,$http,$sce,$uibModalInstance,data){
@@ -422,4 +434,23 @@ var nl2br = function (str) {
   var breakTag = '<br>';
   return (str + '')
     .replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
+};
+
+/**
+ * Function which returns the result of the subtraction method applied to
+ * sets (mathematical concept).
+ *
+ * @param a Array one
+ * @param b Array two
+ * @param key Array two
+ * @return An array containing the result
+ */
+var arrayDiff = function (a,b,key) {
+  var seen = [], diff = [];
+  for ( var i = 0; i < b.length; i++)
+      seen[b[i][key]] = true;
+  for ( i = 0; i < a.length; i++)
+      if (!seen[a[i][key]])
+          diff.push(a[i]);
+  return diff;
 };
